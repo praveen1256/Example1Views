@@ -6,6 +6,7 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Views
     String TAG = "MainActivity LifeCycle";
 
     @Override
