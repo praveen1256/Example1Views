@@ -6,11 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/lv_list"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/iv_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_item_lv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Hai"
+        android:textSize="30sp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
