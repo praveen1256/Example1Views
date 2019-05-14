@@ -34,4 +34,7 @@ public class MyAdapter extends ArrayAdapter<String> {
         Log.v("MyAdapter","Hai "+position+",Hashcode "+view.hashCode());
         return view;
     }
+
+
+
 }
