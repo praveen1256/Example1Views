@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        multPermissionCheck();
+        sendSMS();
     }
 
     private void callBrowser() {
@@ -104,10 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(browser);
     }
 
-    private void sendSMS(){
-//        SmsManager smsManager = SmsManager.getDefault();
-//        smsManager.sendTextMessage(phoneNo, null, message, null, null);
-//        uses-permission android:name="android.permission.SEND_SMS" />
+    private void sendSMS() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            sendMySMS();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.SEND_SMS},
+                    12);
+        }
     }
 
     private void multPermissionCheck() {
@@ -169,26 +173,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
 
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                        Toast.makeText(this, "App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "Permission Disabled By User Tapped On Never Ask Again", Toast.LENGTH_LONG).show();
-                        showSettingsAlert();
-                    }
+//                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+//                        Toast.makeText(this, "App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(this, "Permission Disabled By User Tapped On Never Ask Again", Toast.LENGTH_LONG).show();
+//                        showSettingsAlert("App needs to access the Camera.",Manifest.permission.CAMERA);
+//                    }
+
+                    showSettingsAlert("App needs to access the Camera.",Manifest.permission.CAMERA);
                 }
                 break;
             case 15:
                 if (grantResults.length > 0) {
-                    Log.v("Grant","Grant : "+grantResults[0]);
+                    Log.v("Grant", "Grant : " + grantResults[0]);
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(this, "First Granted" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "First Granted", Toast.LENGTH_LONG).show();
                         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                            Toast.makeText(this, "Second Granted" , Toast.LENGTH_LONG).show();
-                        } else{
-                            Toast.makeText(this, "Second Not Granted" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Second Granted", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(this, "Second Not Granted", Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        Toast.makeText(this, "First Not Granted" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "First Not Granted", Toast.LENGTH_LONG).show();
                     }
                     Toast.makeText(this, "" + grantResults.length, Toast.LENGTH_LONG).show();
                 } else {
@@ -198,13 +204,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // other 'case' lines to check for other
             // permissions this app might request
 
+            case 12:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    sendMySMS();
+                } else {
+//                    Toast.makeText(this, "Need Permission To Send SMS", Toast.LENGTH_LONG).show();
+                    showSettingsAlert("Need Permission To Send SMS",Manifest.permission.SEND_SMS);
+                }
+                break;
+
         }
     }
 
-    private void showSettingsAlert() {
+    private void sendMySMS() {
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("+919177414034", null, "Hello From SMS Manager", null, null);
+        Toast.makeText(this, "SMS Sent", Toast.LENGTH_LONG).show();
+    }
+
+    private void showSettingsAlert(String msg,String permission) {
+
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+            Toast.makeText(this, "App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Alert");
-        alertDialog.setMessage("App needs to access the Camera.");
+        alertDialog.setMessage(msg);
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "DONT ALLOW",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
