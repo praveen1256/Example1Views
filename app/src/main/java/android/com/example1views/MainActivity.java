@@ -33,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(TAG,TAG+" : onResume");
-        getString();
+//        saveString();
+//        getString();
+        String name = Thread.currentThread().getName();
+        showToast(name);
+        // Every application will run on main thread or ui thread
     }
 
     @Override
@@ -69,12 +73,17 @@ public class MainActivity extends AppCompatActivity {
     private void saveString(){
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("place", "Hyderabad");
-        editor.commit();
+        editor.commit();// Sync thread safe we can use for multiple threads
+        editor.apply();// Async for single thread
     }
 
     private void getString(){
         String place = sharedpreferences.getString("place","EMPTY");
-        Toast.makeText(this,place,Toast.LENGTH_LONG).show();
+        showToast(place);
+    }
+
+    private void showToast(String message){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
 }
