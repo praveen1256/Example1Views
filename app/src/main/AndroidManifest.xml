@@ -21,6 +21,11 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
             </intent-filter>
         </receiver>
+        <receiver android:name=".MyCustomReceiver">
+            <intent-filter>
+                <action android:name="myCustomReceiver"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
