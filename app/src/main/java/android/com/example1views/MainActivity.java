@@ -1,18 +1,45 @@
 package android.com.example1views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+
+//      3 Types
+//
+//      1	Normal BR - Custom BR 		// Register the BR in manifest file
+//      2	Local BR - By Default Custom 	// Need to Register/unregister in the Activity onResume/onStop
+//            LocalBroadCastManager
+//
+//      3	Ordered BR - Result Back in Activity
+//
+//
+//    Services/Unbound Service/Started Service 	:	Background ex : Playing Music/Download Something(Normal Data)
+//    We can't communicate (Run in the UI Thread)
+//    Activity will startService and stopService belongs to activity methods
+//            ( selfStop) is belongs to service method
+//    Wont any UI
+//    boundService	:	Interact with Service and Activity
+//    We can communicate
+//    IntentService	:	Background ex Worker Thread/Async Call/Separate Thread
+//    After completing the work it stops itself
+
+
+
+
     String TAG = "MainActivity LifeCycle";
+    Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG,TAG+" : onCreate");
+        service = new Intent(this,MyService.class);
+        startService(service);
     }
 
     @Override
@@ -36,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        stopService(service);
         Log.v(TAG,TAG+": onStop");
     }
 
