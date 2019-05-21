@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SendOrderedBroadcastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +26,18 @@
                 <action android:name="myCustomReceiver"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".TruitonReceiver" >
+            <intent-filter android:priority="1" >
+                <action android:name="com.truiton.OrderedBroadcast" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".TruitonReceiverTwo" >
+            <intent-filter android:priority="2" >
+                <action android:name="com.truiton.OrderedBroadcast" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
