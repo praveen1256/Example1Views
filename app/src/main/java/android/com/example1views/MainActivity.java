@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.v(TAG,TAG+" : onCreate");
         service = new Intent(this,MyService.class);
+//        service = new Intent(this,IntentServiceExample.class);
         startService(service);
+
     }
 
     @Override
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        stopService(service);
+//        stopService(service);
         Log.v(TAG,TAG+": onStop");
     }
 
