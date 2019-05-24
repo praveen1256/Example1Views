@@ -31,6 +31,11 @@ public class NotificationActivity extends AppCompatActivity {
                 .setContentText("Subject")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pIntent)
+                .setStyle(new Notification.BigTextStyle().bigText("jdksjfakfllaffafdddddddddjdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksj" +
+                        "fakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafddddddddddd" +
+                        "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafddddddddddddddddddddddddddddddddddddddd" +
+                        "jdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafddddddddddddddddddddddddddddddddddddddd" +
+                        "jdksjfakfllaffafdddddddddddddddddddddddddddddddddddddddjdksjfakfllaffafddddddddddddddddddddddddddddddddddddddd"))
                 .setAutoCancel(true)
                 .addAction(R.mipmap.ic_launcher, "Call", pIntent)
                 .addAction(R.mipmap.ic_launcher, "More", pIntent)
