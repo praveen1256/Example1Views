@@ -1,9 +1,12 @@
 package android.com.example1views;
 
 public class Contact {
+
     int _id;
     String _name;
     String _phone_number;
+
+
     public Contact(){   }
     public Contact(int id, String name, String _phone_number){
         this._id = id;

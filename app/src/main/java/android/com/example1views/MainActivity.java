@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         // Reading all contacts
         Log.d("Reading: ", "Reading all contacts..");
         List<Contact> contacts = db.getAllContacts();
+        Contact contact1 = db.getContact(1);
 
         for (Contact cn : contacts) {
             String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " +
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.v(TAG,TAG+" : onCreate");
+        Log.v(TAG,TAG+" : Data "+contact1.getName());
     }
 
     @Override
