@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG,TAG+" : onResume");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<SamplePojo> samplePojoCall = getDataService.getDetails();
+//        Call<SamplePojo> samplePojoCall1 = getDataService.loginPath(et_username.getText(),et_username.getText());
+        SamplePojo samplePojo = new SamplePojo();
+        samplePojo.setName("xxx");
+        samplePojo.setPlace("1234");
+//        Call<SamplePojo> samplePojoCall = getDataService.loginBody("key",samplePojo);
         samplePojoCall.enqueue(new Callback<SamplePojo>() {
             @Override
             public void onResponse(Call<SamplePojo> call, Response<SamplePojo> response) {
