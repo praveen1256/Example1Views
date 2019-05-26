@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
+            android:name=".MyContentProvider2"
+            android:authorities="com.android.myown"
+            android:enabled="true"
+            android:exported="true"></provider>
+        <provider
             android:name=".MyContentProvider"
             android:authorities="com.exampleviews.own.PROVIDER"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

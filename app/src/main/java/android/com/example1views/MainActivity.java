@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.net.URI;
+
 public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity LifeCycle";
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private void fetchContacts() {
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         String[] projection = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,ContactsContract.CommonDataKinds.Phone.NUMBER};
+//        Uri uri = Uri.parse("content://com.exampleviews.own.PROVIDER"); // Custom Uri
+//        String[] projection = {"name","phone_number"};
         String selection = null;
         String[] selectionArgs = null;
         String sortOrder = null;
