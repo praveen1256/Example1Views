@@ -9,6 +9,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+//https://myproject.com/login/xxxx/1234	// Path URL
+//        https://myproject.com/login?username='xxxx'&password='1234'	// Query URL
+//        https://myproject.com/login
+//        Body
+//        i.e we need to create Pojo Class and send that as Body
+
 public interface GetDataService {
 
     @GET("5ce8a2133500004091cf64f1")
