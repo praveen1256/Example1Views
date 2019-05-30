@@ -6,13 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="NORMAL"
+        app:layout_constraintTop_toBottomOf="@id/map"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+        android:id="@+id/bt_hybrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hybrid"
+        app:layout_constraintTop_toBottomOf="@id/map"
+        app:layout_constraintStart_toEndOf="@id/bt_normal"/>
+    <Button
+        android:id="@+id/bt_satellite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SATELLITE"
+        app:layout_constraintTop_toBottomOf="@id/map"
+        app:layout_constraintStart_toEndOf="@id/bt_hybrid"/>
+    <Button
+        android:id="@+id/bt_terrian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TERRIAN"
+        app:layout_constraintTop_toBottomOf="@id/map"
+        app:layout_constraintStart_toEndOf="@id/bt_satellite"/>
+
+    <Button
+        android:id="@+id/bt_zoom_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ZOOM OPTIONS"
+        app:layout_constraintTop_toBottomOf="@id/bt_normal"
+        app:layout_constraintStart_toStartOf="@id/bt_normal"/>
+
+    <Button
+        android:id="@+id/bt_hyd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hyd"
+        app:layout_constraintTop_toBottomOf="@id/bt_normal"
+        app:layout_constraintStart_toEndOf="@id/bt_zoom_options"/>
+
+    <Button
+        android:id="@+id/bt_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Circle"
+        app:layout_constraintTop_toBottomOf="@id/bt_normal"
+        app:layout_constraintStart_toEndOf="@id/bt_hyd"/>
+
+    <Button
+        android:id="@+id/bt_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clean"
+        app:layout_constraintTop_toBottomOf="@id/bt_zoom_options"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+     <Button
+        android:id="@+id/bt_polylines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hyd-Sec-HitechCity"
+        app:layout_constraintTop_toBottomOf="@id/bt_zoom_options"
+        app:layout_constraintStart_toEndOf="@id/bt_clear"/>
 
 </android.support.constraint.ConstraintLayout>
