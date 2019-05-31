@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 map.addMarker(new MarkerOptions().position(latLng).title("Tab Location").snippet("Helloooooooooooooo"));
             }
         });
+
         addMarker();
     }
 
@@ -204,5 +205,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(sec,
                 13));
 
+    }
+
+    private String getDirectionsUrl(LatLng origin,LatLng dest){
+
+        // Origin of route
+        String str_origin = "origin="+origin.latitude+","+origin.longitude;
+
+        // Destination of route
+        String str_dest = "destination="+dest.latitude+","+dest.longitude;
+
+        // Sensor enabled
+        String sensor = "sensor=false";
+
+        // Building the parameters to the web service
+        String parameters = str_origin+"&"+str_dest+"&"+sensor;
+
+        // Output format
+        String output = "json";
+
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+
+        return url;
     }
 }
