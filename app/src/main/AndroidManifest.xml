@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CollapsingToolbarActivity"/>
+        <activity android:name=".CustomBehaviorActivity"/>
+        <activity android:name=".FabAndSnackbarActivity"/>
+        <activity android:name=".FabFollowsWidgetActivity"/>
     </application>
 
 </manifest>
