@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class OneFragment extends Fragment {
 
@@ -21,7 +23,20 @@ public class OneFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_one, container, false);
+        View view =inflater.inflate(R.layout.fragment_one, container, false);
+        TextView textView = view.findViewById(R.id.tv_frag_one);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast();
+
+            }
+        });
+        return view;
+    }
+
+    private void showToast() {
+        Toast.makeText(getActivity(),"Frag One Clicked",Toast.LENGTH_LONG).show();
     }
 
 }

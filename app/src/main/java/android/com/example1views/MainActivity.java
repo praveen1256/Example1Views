@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +20,51 @@ public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity LifeCycle";
 
+    /*
+    *   Material Design Topics
+    *
+    *   Recycler View
+    *   CardView
+    *   Drawer Layout & Navigation View
+    *   Toolbar
+    *   TabLayout and Viewpager
+    *   Coordinator Layout
+    *   Snack Bar
+    *   Collapse Toolbar
+    *   Floating Action Button
+    *
+    * */
+
+
     private TabLayout tabLayout;
-    private ViewPager viewPager;
     private Toolbar toolbar;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Window.settitel remove
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager =  findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout =  findViewById(R.id.tabs);
         toolbar =  findViewById(R.id.toolbar);
+        toolbar.findViewById(R.id.tv_toolbar_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Toolbar Title Clicked",Toast.LENGTH_LONG).show();
+            }
+        });
+        tabLayout =  findViewById(R.id.tabs);
+        viewPager =  findViewById(R.id.viewpager);
+        setupViewPager();
 //        setSupportActionBar(toolbar);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
