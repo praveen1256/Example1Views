@@ -1,4 +1,4 @@
-package android.com.example1views;
+package android.com.example1views.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
