@@ -1,17 +1,24 @@
 package android.com.example1views;
 
+import android.com.example1views.databinding.ActivityMainBinding;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity LifeCycle";
+    Data data;
+    ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        data = new Data();
+        data.setText("Data Binding");
         Log.v(TAG,TAG+" : onCreate");
     }
 
@@ -24,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        activityMainBinding.setData(data);
         Log.v(TAG,TAG+" : onResume");
     }
 
@@ -36,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        data.setText("Data Binding Stop");
         Log.v(TAG,TAG+": onStop");
     }
 
