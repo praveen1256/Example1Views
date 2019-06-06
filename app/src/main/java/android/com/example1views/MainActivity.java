@@ -2,10 +2,9 @@ package android.com.example1views;
 
 import android.com.example1views.databinding.ActivityMainBinding;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         data = new Data();
         data.setText("Data Binding");
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        activityMainBinding.setData(data);
+//        activityMainBinding.setData(data);
         Log.v(TAG,TAG+" : onResume");
     }
 
