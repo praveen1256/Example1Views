@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:numStars="5"
             android:rating="2"
-            android:stepSize="0.2"
+            android:stepSize="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cb_save" />
 
@@ -72,6 +72,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rb_rating" />
 
+        <RadioButton
+            android:id="@+id/rb_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sb_seekbar"/>
+
         <RadioGroup
             android:id="@+id/rg_group"
             android:layout_width="match_parent"
@@ -79,7 +87,7 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sb_seekbar">
+            app:layout_constraintTop_toBottomOf="@id/rb_0">
 
             <RadioButton
                 android:id="@+id/rb_1"
@@ -110,6 +118,7 @@
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="150dp"
+            android:visibility="gone"
             android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,8 +128,8 @@
             android:id="@+id/tb_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOff="Hello"
-            android:textOn="Hai"
+            android:textOff="Off"
+            android:textOn="On"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_image" />
 

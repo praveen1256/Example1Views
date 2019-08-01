@@ -96,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         rb_rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Log.v(TAG,TAG+" : rating : "+rating);
-
+                Toast.makeText(MainActivity.this,"Rating : "+rating,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
         rg_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                getRadioButtionId(checkedId);
+                String result = getRadioButtionId(checkedId);
+                tv_status.setText(result);
             }
         });
 
