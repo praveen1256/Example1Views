@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -186,10 +187,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void datePicker() {
 
+
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -218,13 +221,19 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("My Title");
         builder.setMessage("Hai How Are You");
-        builder.setPositiveButton("Good", new DialogInterface.OnClickListener() {
+
+//        View view = LayoutInflater.from(this).inflate(R.layout.dialog_custom,null);
+//        builder.setView(view);
+//        Button button = view.findViewById(R.id.button);
+
+        builder.setPositiveButton(getResources().getString(R.string.bt_login), new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Log.v("Dialog","Good");
-                dialog.cancel();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Login Clicked",Toast.LENGTH_LONG).show();
+                dialogInterface.dismiss();
             }
-        }).setNegativeButton("Bad", new DialogInterface.OnClickListener() {
+        });
+        builder.setNegativeButton("Bad", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.v("Dialog","Bad");
@@ -237,6 +246,26 @@ public class MainActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
+
+//        builder.setPositiveButton("Good", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Log.v("Dialog","Good");
+//                dialog.cancel();
+//            }
+//        }).setNegativeButton("Bad", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Log.v("Dialog","Bad");
+//                dialog.cancel();
+//            }
+//        }).setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Log.v("Dialog","Ok");
+//                dialog.cancel();
+//            }
+//        });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

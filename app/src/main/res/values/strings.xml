@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Example1Views</string>
     <string name="hint_username">Enter Username</string>
+    <string name="bt_login">Login</string>
 </resources>
