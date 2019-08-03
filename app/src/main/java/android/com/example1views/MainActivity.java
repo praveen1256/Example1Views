@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements RecyclerTouchListener.ClickListener {
 
@@ -48,14 +49,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
         MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(this,listData,listImages);
 
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, true);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, false);
 
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext());
-//        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(getApplicationContext());
+//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+//        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
 
         rv_list.setLayoutManager(mLayoutManager);
-        rv_list.setItemAnimator(new DefaultItemAnimator());
+//        rv_list.setItemAnimator(new DefaultItemAnimator());
         rv_list.setAdapter(myRecyclerViewAdapter);
         rv_list.addOnItemTouchListener(new RecyclerTouchListener(this,rv_list,this));
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedString = listData[position];
+                Toast.makeText(MainActivity.this,""+listData[position],Toast.LENGTH_LONG).show();
                 Log.v(TAG,TAG+" : "+selectedString);
             }
         });
@@ -123,9 +125,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
     @Override
     public void onClick(View view, int position) {
         Log.v(TAG,TAG+" : RV Position "+position);
-        Intent intent = new Intent(this,ItemDetails.class);
-        intent.putExtra("myValue",""+listData[position]);
-        startActivity(intent);
+//        Intent intent = new Intent(this,ItemDetails.class);
+//        intent.putExtra("myValue",""+listData[position]);
+//        startActivity(intent);
     }
 
     @Override

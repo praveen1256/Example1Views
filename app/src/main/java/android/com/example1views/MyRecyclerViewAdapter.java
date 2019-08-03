@@ -41,7 +41,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 //                Log.v("Position","Position "+position);
 //            }
 //        });
-//        Log.v("MyAdapter","Hai "+position+",Hashcode "+viewHolder.hashCode());
+        Log.v("MyAdapter","Hai "+position+",Hashcode "+viewHolder.hashCode());
     }
 
     @Override
@@ -58,7 +58,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_icon);
             textView = itemView.findViewById(R.id.tv_item_lv);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                }
+            });
         }
     }
 
