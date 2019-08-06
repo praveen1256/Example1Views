@@ -13,9 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements RecyclerTouchListener.ClickListener {
+public class MainActivity extends AppCompatActivity implements RecyclerTouchListener.ClickListener, AdapterView.OnItemSelectedListener {
 
     String TAG = "MainActivity LifeCycle";
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
             R.drawable.ic_image2,R.drawable.ic_image1,R.drawable.ic_image2,R.drawable.ic_image1,R.drawable.ic_image2};
     ArrayAdapter<String> stringArrayAdapter;
     MyAdapter myAdapter;
-
+    Spinner spinner;
 
     // RecyclerView
     RecyclerView rv_list;
@@ -38,10 +39,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
         setContentView(R.layout.activity_main);
         lv_list = findViewById(R.id.lv_list);
         rv_list = findViewById(R.id.rv_list);
+        spinner = findViewById(R.id.spinner);
 
         setListView();
         setRecyclerView();
+        setSpinnerData();
         Log.v(TAG,TAG+" : onCreate");
+    }
+
+    private void setSpinnerData() {
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listData);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinner.setAdapter(aa);
+        spinner.setOnItemSelectedListener(this);
     }
 
     private void setRecyclerView() {
@@ -132,6 +143,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
 
     @Override
     public void onLongClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        Toast.makeText(getApplicationContext(),listData[position] , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
