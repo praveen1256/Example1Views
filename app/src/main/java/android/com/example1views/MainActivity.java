@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        sendSMS();
+        dialNumber();
     }
 
     private void callBrowser() {
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void call() {
+        // we have to check permisison if disabled we have to show dialog to user ask to enable the permission
         Intent browser = new Intent(Intent.ACTION_CALL);
         browser.setData(Uri.parse("tel:1234567890"));
         startActivity(browser);
@@ -153,7 +154,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void second() {
         Intent second = new Intent(this, SecondActivity.class);
-        startActivityForResult(second, 1);
+        second.putExtra("data","From First Screen");
+        startActivity(second);
+//        startActivityForResult(second, 1);
     }
 
     @Override
