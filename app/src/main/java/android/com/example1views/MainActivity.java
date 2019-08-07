@@ -3,6 +3,7 @@ package android.com.example1views;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,8 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String TAG = "MainActivity LifeCycle";
     Button bt_clickme;
     ImageView iv_image;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_clickme = findViewById(R.id.bt_clickme);
         iv_image = findViewById(R.id.iv_image);
         bt_clickme.setOnClickListener(this);
+        checkBox.setOnClickListener(this);
         Log.v(TAG, TAG + " : onCreate");
     }
 
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        dialNumber();
+        multPermissionCheck();
     }
 
     private void callBrowser() {
@@ -117,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void multPermissionCheck() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                 // Both are not granted
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE},
+                        new String[]{Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE},
                         15);
             } else {
 
@@ -132,12 +137,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void camera() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Disabled", Toast.LENGTH_LONG).show();
-                requestCameraPermission();
-            } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                 Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(photoCaptureIntent, 10);
+            } else {
+                Toast.makeText(this, "Permission Disabled", Toast.LENGTH_LONG).show();
+                requestCameraPermission();
             }
         } else {
             Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -147,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void requestCameraPermission() {
 
+        // It shows permission request dialog
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
                 11);
@@ -155,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void second() {
         Intent second = new Intent(this, SecondActivity.class);
         second.putExtra("data","From First Screen");
-        startActivity(second);
-//        startActivityForResult(second, 1);
+//        startActivity(second);
+        startActivityForResult(second, 1);
     }
 
     @Override
@@ -175,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-
+//
 //                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
 //                        Toast.makeText(this, "App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
 //                    } else {
@@ -189,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 15:
                 if (grantResults.length > 0) {
                     Log.v("Grant", "Grant : " + grantResults[0]);
+
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         Toast.makeText(this, "First Granted", Toast.LENGTH_LONG).show();
                         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
@@ -203,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Toast.makeText(this, "Length 0", Toast.LENGTH_LONG).show();
                 }
+
                 break;
             // other 'case' lines to check for other
             // permissions this app might request
@@ -227,10 +235,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showSettingsAlert(String msg,String permission) {
 
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-            Toast.makeText(this, "App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+//            Toast.makeText(this, "Never Ask App Requires Permission. Please Allow It", Toast.LENGTH_LONG).show();
+//            return;
+//        }
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Alert");
@@ -250,6 +258,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
         alertDialog.show();
+
+//        requestCameraPermission();
     }
 
     public static void startInstalledAppDetailsActivity(final Activity context) {
