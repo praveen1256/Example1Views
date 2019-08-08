@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,20 +30,31 @@ public class MainActivity extends AppCompatActivity {
 //    After completing the work it stops itself
 
 
-
+    // ANR - Application Not Responding
 
     String TAG = "MainActivity LifeCycle";
     Intent service;
-
+    TextView tv_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tv_view = findViewById(R.id.tv_view);
         Log.v(TAG,TAG+" : onCreate");
-        service = new Intent(this,MyService.class);
-//        service = new Intent(this,IntentServiceExample.class);
+//        service = new Intent(this,MyService.class);
+        service = new Intent(this,IntentServiceExample.class);
         startService(service);
 
+        tv_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
     }
@@ -68,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-//        stopService(service);
+        stopService(service);
         Log.v(TAG,TAG+": onStop");
     }
 

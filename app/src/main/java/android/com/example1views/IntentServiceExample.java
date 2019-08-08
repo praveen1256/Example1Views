@@ -19,6 +19,6 @@ public class IntentServiceExample extends IntentService {
         // Do you work
         // It will stop once the work is done
         // Play Song
-        Log.v("IntentServiceExample","onStart : "+Thread.currentThread().getName());
+        Log.e("IntentServiceExample","IntentServiceExample onStart : "+Thread.currentThread().getName());
     }
 }
