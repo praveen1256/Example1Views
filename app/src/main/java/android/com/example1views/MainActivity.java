@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String TAG = "MainActivity LifeCycle";
     Button bt_clickme;
     ImageView iv_image;
-    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_clickme = findViewById(R.id.bt_clickme);
         iv_image = findViewById(R.id.iv_image);
         bt_clickme.setOnClickListener(this);
-        checkBox.setOnClickListener(this);
         Log.v(TAG, TAG + " : onCreate");
     }
 
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        multPermissionCheck();
+        second();
     }
 
     private void callBrowser() {
@@ -276,14 +274,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            String text = data.getStringExtra("edittext");
-            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-        }
+        if(data!=null) {
+            if (requestCode == 1) {
+                String text = data.getStringExtra("edittext");
+                Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+            }
 
-        if (requestCode == 10 && resultCode == RESULT_OK) {
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            iv_image.setImageBitmap(bitmap);
+            if (requestCode == 10 && resultCode == RESULT_OK) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                iv_image.setImageBitmap(bitmap);
+            }
         }
     }
+
+
 }
