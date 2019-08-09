@@ -46,6 +46,7 @@ public class BoundActivity extends AppCompatActivity {
                     Toast.makeText(BoundActivity.this, mBoundService.getData(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -79,5 +80,7 @@ public class BoundActivity extends AppCompatActivity {
 //        startService(intent);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
+
+
 
 }

@@ -30,7 +30,6 @@ public class MyService extends Service {
         // Our Logic
         mediaPlayer.start();
 
-
 //        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 //            @Override
 //            public void onCompletion(MediaPlayer mp) {
