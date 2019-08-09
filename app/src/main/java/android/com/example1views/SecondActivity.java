@@ -33,14 +33,14 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-//        Intent data = new Intent();
-//        data.putExtra("edittext",et_edittext.getText().toString());
-//        setResult(RESULT_OK,data);
-//        finish();
+        Intent data = new Intent();
+        data.putExtra("edittext",et_edittext.getText().toString());
+        setResult(RESULT_OK,data);
+        finish();
 
-        Intent second = new Intent(this, ThirdActivity.class);
-        second.putExtra("data","From First Screen");
-        startActivity(second);
+//        Intent second = new Intent(this, ThirdActivity.class);
+//        second.putExtra("data","From First Screen");
+//        startActivity(second);
 
     }
 }

@@ -26,11 +26,16 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String TAG = "MainActivity LifeCycle";
     Button bt_clickme;
     ImageView iv_image;
+            ArrayList<String> permissionsList = new ArrayList<>();
+        ArrayList<String> permissionsNotGrantedList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +124,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void multPermissionCheck() {
+
+        // 0 is accepted,1 is not accepeted
+//        int callPhone = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+//        int sendSms = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+//
+//        if(callPhone==0 && sendSms == 0){
+//            // Perform Logic
+//        } else if(callPhone != 0 && sendSms!=0){
+//            // Ask Both Permissions
+//        } else if(callPhone == 0 && sendSms!=0){
+//            // Ask for Sendsms Permission
+//        } else {
+//            // Ask for call phone permission
+//        }
+//
+//        permissionsList.add(Manifest.permission.CALL_PHONE);
+//        permissionsList.add(Manifest.permission.SEND_SMS);
+//
+//
+//        for(int i=0;i<permissionsList.size();i++) {
+//            if (ContextCompat.checkSelfPermission(this, permissionsList.get(i)) != PackageManager.PERMISSION_GRANTED) {
+//                permissionsNotGrantedList.add(permissionsList.get(i));
+//            }
+//        }
+//
+//        if(permissionsNotGrantedList.size()>0){
+//            String[] mStringArray = new String[permissionsNotGrantedList.size()];
+//            mStringArray = permissionsNotGrantedList.toArray(mStringArray);
+//
+//            ActivityCompat.requestPermissions(this,
+//                    mStringArray,
+//                    15);
+//
+//        } else {
+//            // Perform Logic
+//        }
+
+
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                 // Both are not granted
@@ -126,10 +170,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         new String[]{Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE},
                         15);
             } else {
-
+                // If call SMS is Granted
             }
         } else {
-
+            // If Call Phone is Granted
         }
     }
 
@@ -193,6 +237,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 15:
                 if (grantResults.length > 0) {
                     Log.v("Grant", "Grant : " + grantResults[0]);
+
+//                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+//                     // navigate to second
+//                    } else {
+//
+//                    }
+//                    permissionsNotGrantedList.clear();
+//                    for(int i = 0;i<grantResults.length;i++){
+//                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+//                            permissionsNotGrantedList.add(permissionsList.get(i));
+//                        }
+//                    }
+
 
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         Toast.makeText(this, "First Granted", Toast.LENGTH_LONG).show();
