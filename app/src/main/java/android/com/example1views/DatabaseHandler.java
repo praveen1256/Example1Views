@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String table = "create table "+TABLE_CONTACTS+" ("+KEY_NAME+" TEXT)";
+
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PH_NO + " TEXT" + ")";//BLOB
+        Log.v("Table ","Table "+CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -40,9 +44,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         // Create tables again
         onCreate(db);
+        if(newVersion==1)
+        db.execSQL("ALTER TABLE "+TABLE_CONTACTS+" ADD "+KEY_PLACE+" TEXT");
+        if(newVersion==2)
+        {
 
-//        db.execSQL("ALTER TABLE "+TABLE_CONTACTS+" ADD "+KEY_PLACE+" TEXT");
-
+        }
 //          db.execSQL("ALTER TABLE "+TABLE_CONTACTS+" ADD "+KEY_PLACE+" TEXT");
 
     }
@@ -64,15 +71,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // code to get the single contact
     Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
+        // select keyid,name,phoneno from  contacts where id = 10;
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-                        KEY_NAME, KEY_PH_NO }, KEY_ID + "=?",
+                         KEY_PH_NO , KEY_NAME,}, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
-            cursor.moveToFirst();
+            cursor.moveToFirst();// 1 row
+
+
 
         Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
+                cursor.getString(cursor.getColumnIndex(KEY_NAME)), cursor.getString(2));
         // return contact
         return contact;
     }
