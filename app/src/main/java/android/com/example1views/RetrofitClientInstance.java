@@ -6,7 +6,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
+    private static RetrofitClientInstance retrofitClientInstance;
     private static final String BASE_URL = "http://www.mocky.io/v2/";
+
+    private RetrofitClientInstance() {
+
+    }
+
+    public static RetrofitClientInstance getMainInstance() {
+        if (retrofitClientInstance == null) {
+            retrofitClientInstance = new RetrofitClientInstance();
+        }
+        return retrofitClientInstance;
+    }
 
     // Singleton Design Pattern
     public static Retrofit getRetrofitInstance() {

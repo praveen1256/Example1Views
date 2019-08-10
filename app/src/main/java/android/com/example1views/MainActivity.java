@@ -5,11 +5,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.net.UnknownHostException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Http with Async
+    // Volley
+    // Retrofit
 
     String TAG = "MainActivity LifeCycle";
     MyClass myClass = MyClass.getInstance();
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.v(TAG,TAG+" : onStart");
+        RetrofitClientInstance retrofitClientInstance = RetrofitClientInstance.getMainInstance();
     }
 
     @Override
@@ -35,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.v(TAG,TAG+" : onResume");
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+
         Call<SamplePojo> samplePojoCall = getDataService.getDetails();
 //        Call<SamplePojo> samplePojoCall1 = getDataService.loginPath(et_username.getText(),et_username.getText());
         SamplePojo samplePojo = new SamplePojo();
@@ -83,5 +91,34 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Log.v(TAG,TAG+" : onBackPressed");
+    }
+
+
+    public void login(){
+        GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<SamplePojo> samplePojoCall = getDataService.loginValidation1("","");
+
+//        SamplePojo samplePojo = new SamplePojo();
+//        samplePojo.setName("ajkla");
+//        samplePojo.setPlace("dsjdla");
+//
+//        getDataService.loginBody("key",samplePojo);
+
+        samplePojoCall.enqueue(new Callback<SamplePojo>() {
+            @Override
+            public void onResponse(Call<SamplePojo> call, Response<SamplePojo> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<SamplePojo> call, Throwable throwable) {
+                throwable.getMessage();
+                    if(throwable instanceof UnknownHostException){
+                        // alert
+                    } else {
+                        // alert someting went wrong
+                    }
+            }
+        });
     }
 }
