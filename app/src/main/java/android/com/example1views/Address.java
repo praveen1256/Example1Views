@@ -1,10 +1,9 @@
 package android.com.example1views;
 
-public class Data {
+public class Address {
 
     String text;
     String phone;
-    boolean display;
 
     public String getText() {
         return text;
@@ -21,13 +20,5 @@ public class Data {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public boolean isDisplay() {
-        return display;
-    }
-
-    public void setDisplay(boolean display) {
-        this.display = display;
     }
 }
