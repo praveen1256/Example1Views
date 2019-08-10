@@ -14,14 +14,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DatabaseHandler db1 = new DatabaseHandler(this);
         DatabaseHandler db = new DatabaseHandler(this);
 
         // Inserting Contacts
         Log.d("Insert: ", "Inserting ..");
-        db.addContact(new Contact("Ravi", "9100000000"));
-        db.addContact(new Contact("Srinivas", "9199999999"));
-        db.addContact(new Contact("Tommy", "9522222222"));
-        db.addContact(new Contact("Karthik", "9533333333"));
+//        db.addContact(new Contact("Ravi", "9100000000"));
+//        db.addContact(new Contact("Srinivas", "9199999999"));
+//        db.addContact(new Contact("Tommy", "9522222222"));
+//        db.addContact(new Contact("Karthik", "9533333333"));
 
         // Reading all contacts
         Log.d("Reading: ", "Reading all contacts..");
