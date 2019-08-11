@@ -1,15 +1,19 @@
 package android.com.example1views;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements FragmentCommunication{
 
     String TAG = "MainActivity LifeCycle";
     TextView tv_text;
-
+    EditText value1;
+    int result =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements FragmentCommunica
     @Override
     protected void onResume() {
         super.onResume();
+        // Button Click
+//        result += Integer.parseInt(value1.getText().toString())+Integer.parseInt(value1.getText().toString());
+//        value1.setText("");
         Log.v(TAG,TAG+" : onResume");
     }
 
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements FragmentCommunica
     @Override
     protected void onStop() {
         super.onStop();
+//        result=0;
         Log.v(TAG,TAG+": onStop");
     }
 
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements FragmentCommunica
 
     @Override
     public void setDataCommunication(String msg) {
-        setData(msg);
+//        setData(msg);
+        tv_text.setText(msg);
     }
 }

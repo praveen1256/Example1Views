@@ -7,6 +7,12 @@
     android:background="#00FF00"
     tools:context=".MainActivity">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
         android:id="@+id/tv_frag_one"
         android:layout_width="wrap_content"
