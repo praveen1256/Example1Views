@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_main);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+
 //        activityMainBinding.tvTextview.setText("fjslfj");//tv_textview
         activityMainBinding.tvTextview.setVisibility(View.VISIBLE);
 
-//        data = new Data();
-//        data.setText("Data Binding");
-//        activityMainBinding.setData(data);
+
+        data = new Data();
+        data.setText("Data Binding");
+        activityMainBinding.setData(data);
 
         Log.v(TAG,TAG+" : onCreate");
     }
