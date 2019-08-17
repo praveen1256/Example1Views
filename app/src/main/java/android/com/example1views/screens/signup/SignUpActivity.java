@@ -1,16 +1,18 @@
-package android.com.example1views.screens.login;
+package android.com.example1views.screens.signup;
 
 import android.com.example1views.R;
-import android.com.example1views.screens.login.model.LoginResponse;
-import android.support.v7.app.AppCompatActivity;
+import android.com.example1views.screens.login.ILoginPresenter;
+import android.com.example1views.screens.login.ILoginView;
+import android.com.example1views.screens.login.ImpLoginPresenter;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
 
     // MVC,MVP,MVVM
 
@@ -97,8 +99,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     }
 
     @Override
-    public void loginApiSuccess(LoginResponse loginResponse) {
-        showToast(loginResponse.getMessage());
+    public void loginApiSuccess() {
+        showToast("Login Success");
         //navigate to home screen
     }
 

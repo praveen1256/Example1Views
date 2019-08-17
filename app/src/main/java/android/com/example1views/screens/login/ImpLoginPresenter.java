@@ -10,14 +10,16 @@ import retrofit2.Response;
 
 public class ImpLoginPresenter implements ILoginPresenter{
 
+
     ILoginView iLoginView;
+
     public ImpLoginPresenter(ILoginView iLoginView){
         this.iLoginView = iLoginView;
     }
 
     @Override
     public void loginValidation(String userName) {
-        if(userName!=null && userName.trim().length()>0){
+        if(userName!=null && userName.trim().length()>0) {
             // valid success
             iLoginView.successValidation();
         } else {
@@ -33,7 +35,7 @@ public class ImpLoginPresenter implements ILoginPresenter{
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                iLoginView.loginApiSuccess();
+                iLoginView.loginApiSuccess(response.body());
             }
 
             @Override
@@ -43,4 +45,7 @@ public class ImpLoginPresenter implements ILoginPresenter{
         });
     }
 
+    public void newMethod(){
+
+    }
 }

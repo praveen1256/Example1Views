@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse {
 
-    @SerializedName("message")
+    @SerializedName("status")
     @Expose
     private String message;
 

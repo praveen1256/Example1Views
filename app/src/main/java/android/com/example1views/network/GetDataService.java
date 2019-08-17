@@ -13,7 +13,7 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("5cf3322533000095007584f3")
+    @GET("5d576464300000c6c730ae63")
     Call<LoginResponse> callLoginApi();
 
 }
