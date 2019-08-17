@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     ImageDownloader downloader;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
