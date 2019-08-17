@@ -6,10 +6,10 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
-public class ImageDownloader {
+public class DatabaseSqlite {
     private Context context;
 
-    public ImageDownloader(Context context) {
+    public DatabaseSqlite(Context context) {
         this.context = context;
     }
 
@@ -17,5 +17,12 @@ public class ImageDownloader {
                 Glide.with(context).load(url).into(imageView);
         // (one of the) advantage of Dagger: you can now simply switch between two libraries
         Picasso.with(context).load(url).into(imageView);
+
+        // Update some data in db
     }
+
+    public void update(String tableName,String[] columnNames,String[] values){
+        // querty
+    }
+
 }
