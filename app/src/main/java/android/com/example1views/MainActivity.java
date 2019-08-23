@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        second();
+        multPermissionCheck();
     }
 
     private void callBrowser() {
@@ -113,6 +113,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(browser);
     }
 
+
+    private void second() {
+        Intent second = new Intent(this, SecondActivity.class);
+        second.putExtra("data","From First Screen");
+//        startActivity(second);
+        startActivityForResult(second, 1);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null) {
+            if (requestCode == 1) {
+                String text = data.getStringExtra("edittext");
+                Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+            }
+
+            if (requestCode == 10 && resultCode == RESULT_OK) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                iv_image.setImageBitmap(bitmap);
+            }
+        }
+    }
+
     private void sendSMS() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             sendMySMS();
@@ -121,90 +146,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     new String[]{Manifest.permission.SEND_SMS},
                     12);
         }
-    }
-
-    private void multPermissionCheck() {
-
-        // 0 is accepted,1 is not accepeted
-//        int callPhone = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
-//        int sendSms = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
-//
-//        if(callPhone==0 && sendSms == 0){
-//            // Perform Logic
-//        } else if(callPhone != 0 && sendSms!=0){
-//            // Ask Both Permissions
-//        } else if(callPhone == 0 && sendSms!=0){
-//            // Ask for Sendsms Permission
-//        } else {
-//            // Ask for call phone permission
-//        }
-//
-//        permissionsList.add(Manifest.permission.CALL_PHONE);
-//        permissionsList.add(Manifest.permission.SEND_SMS);
-//
-//
-//        for(int i=0;i<permissionsList.size();i++) {
-//            if (ContextCompat.checkSelfPermission(this, permissionsList.get(i)) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNotGrantedList.add(permissionsList.get(i));
-//            }
-//        }
-//
-//        if(permissionsNotGrantedList.size()>0){
-//            String[] mStringArray = new String[permissionsNotGrantedList.size()];
-//            mStringArray = permissionsNotGrantedList.toArray(mStringArray);
-//
-//            ActivityCompat.requestPermissions(this,
-//                    mStringArray,
-//                    15);
-//
-//        } else {
-//            // Perform Logic
-//        }
-
-
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-                // Both are not granted
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE},
-                        15);
-            } else {
-                // If call SMS is Granted
-            }
-        } else {
-            // If Call Phone is Granted
-        }
-    }
-
-    private void camera() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(photoCaptureIntent, 10);
-            } else {
-                Toast.makeText(this, "Permission Disabled", Toast.LENGTH_LONG).show();
-                requestCameraPermission();
-            }
-        } else {
-            Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(photoCaptureIntent, 10);
-        }
-    }
-
-    private void requestCameraPermission() {
-
-        // It shows permission request dialog
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CAMERA},
-                11);
-    }
-
-    private void second() {
-        Intent second = new Intent(this, SecondActivity.class);
-        second.putExtra("data","From First Screen");
-//        startActivity(second);
-        startActivityForResult(second, 1);
     }
 
     @Override
@@ -251,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    }
 
 
+
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         Toast.makeText(this, "First Granted", Toast.LENGTH_LONG).show();
                         if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
@@ -281,6 +223,86 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+
+    private void multPermissionCheck() {
+
+        // 0 is accepted,1 is not accepeted
+//        int callPhone = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+//        int sendSms = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+//
+//        if(callPhone==0 && sendSms == 0){
+//            // Perform Logic
+//        } else if(callPhone != 0 && sendSms!=0){
+//            // Ask Both Permissions
+//        } else if(callPhone == 0 && sendSms!=0){
+//            // Ask for Sendsms Permission
+//        } else {
+//            // Ask for call phone permission
+//        }
+//
+//        permissionsList.add(Manifest.permission.CALL_PHONE);
+//        permissionsList.add(Manifest.permission.SEND_SMS);
+//
+//
+//        for(int i=0;i<permissionsList.size();i++) {
+//            if (ContextCompat.checkSelfPermission(this, permissionsList.get(i)) != PackageManager.PERMISSION_GRANTED) {
+//                permissionsNotGrantedList.add(permissionsList.get(i));
+//            }
+//        }
+//
+//        if(permissionsNotGrantedList.size()>0){
+//            String[] mStringArray = new String[permissionsNotGrantedList.size()];
+//            mStringArray = permissionsNotGrantedList.toArray(mStringArray);
+//
+//            ActivityCompat.requestPermissions(this,
+//                    mStringArray,
+//                    15);
+//
+//        } else {
+//            // Perform Logic
+//        }
+
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                // Both are not granted
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE},
+                        15);
+            } else {
+                // If call SMS is Granted
+            }
+        } else {
+            // If Call Phone is Granted
+        }
+    }
+
+    private void camera() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(photoCaptureIntent, 10);
+            } else {
+                Toast.makeText(this, "Permission Disabled", Toast.LENGTH_LONG).show();
+                requestCameraPermission();
+            }
+        } else {
+            Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(photoCaptureIntent, 10);
+        }
+    }
+
+    private void requestCameraPermission() {
+
+        // It shows permission request dialog
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                11);
+    }
+
+
 
     private void sendMySMS() {
         SmsManager smsManager = SmsManager.getDefault();
@@ -328,21 +350,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         context.startActivity(i);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(data!=null) {
-            if (requestCode == 1) {
-                String text = data.getStringExtra("edittext");
-                Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-            }
-
-            if (requestCode == 10 && resultCode == RESULT_OK) {
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                iv_image.setImageBitmap(bitmap);
-            }
-        }
-    }
 
 
 }
