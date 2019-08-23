@@ -21,14 +21,27 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_main);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // In case of adapter
+
+        // ItemSeatingBinding itemSeatingBinding = DataBindingUtil.inflate(
+        //                LayoutInflater.from(parent.getContext()),
+        //                R.layout.item_seating, parent, false);
+
+        // In case of Fragment
+//        activityHomeBinding = DataBindingUtil.inflate(inflater, R.layout.activity_home, container, false);
+
+        // Dialog
 
 //        activityMainBinding.tvTextview.setText("fjslfj");//tv_textview
         activityMainBinding.tvTextview.setVisibility(View.VISIBLE);
 
 
+
         data = new Data();
         data.setText("Data Binding");
+        data.setDisplay(true);
         activityMainBinding.setData(data);
+
 
         Log.v(TAG,TAG+" : onCreate");
     }
