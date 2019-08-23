@@ -44,5 +44,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_textview" />
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:imageUrl="@{data.imageUrl}"
+            app:listImages="@{data.imageUrls}"
+            app:layout_constraintBottom_toTopOf="@id/tv_phone"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     </android.support.constraint.ConstraintLayout>
 </layout>

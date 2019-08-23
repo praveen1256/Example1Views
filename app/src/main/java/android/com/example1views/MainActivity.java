@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         data = new Data();
         data.setText("Data Binding");
         data.setDisplay(true);
+        data.setImageUrls(new String[]{"sfs","Dafa"});
         activityMainBinding.setData(data);
 
 

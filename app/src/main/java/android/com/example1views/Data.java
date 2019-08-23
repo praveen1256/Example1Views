@@ -5,6 +5,8 @@ public class Data {
     String text;
     String phone;
     boolean display;
+    String imageUrl;
+    String[] imageUrls;
 
     public String getText() {
         return text;
@@ -29,5 +31,21 @@ public class Data {
 
     public void setDisplay(boolean display) {
         this.display = display;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String[] getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String[] imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }
