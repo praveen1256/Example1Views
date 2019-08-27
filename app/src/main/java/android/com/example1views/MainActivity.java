@@ -8,11 +8,17 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     //  Some of the important system wide intents
+
+    // Broadcast receiver 3
+    //  1. Global BR
+    //  2. Local BR
+    //  3. Ordered BR
 
     //  android.intent.action.BATTERY_LOW
     //  android.intent.action.BOOT_COMPLETED
@@ -23,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity LifeCycle";
     LocalBroadcastManager localBroadcastManager;
-
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
