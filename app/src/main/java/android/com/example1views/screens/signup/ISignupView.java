@@ -8,4 +8,5 @@ public interface ISignupView {
     void loginApiSuccess();
 
     void loginApiFailed();
+
 }

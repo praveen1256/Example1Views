@@ -92,8 +92,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     }
 
     @Override
-    public void failValidation() {
-        showToast("Validation Failed");
+    public void failValidation(String msg) {
+        showToast(msg);
     }
 
     @Override

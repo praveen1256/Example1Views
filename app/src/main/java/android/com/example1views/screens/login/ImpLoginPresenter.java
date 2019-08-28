@@ -19,13 +19,16 @@ public class ImpLoginPresenter implements ILoginPresenter{
 
     @Override
     public void loginValidation(String userName) {
-        if(userName!=null && userName.trim().length()>0) {
-            // valid success
-            iLoginView.successValidation();
-        } else {
-            // valid fail
-            iLoginView.failValidation();
+
+        if(userName== null || userName.trim().length()==0){
+            iLoginView.failValidation("Enter User Name");
+            return;
         }
+
+
+
+        iLoginView.successValidation();
+
     }
 
     @Override

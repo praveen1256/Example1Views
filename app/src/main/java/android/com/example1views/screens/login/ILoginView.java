@@ -5,7 +5,7 @@ import android.com.example1views.screens.login.model.LoginResponse;
 public interface ILoginView {
     void successValidation();
 
-    void failValidation();
+    void failValidation(String message);
 
     void loginApiSuccess(LoginResponse loginResponse);
 

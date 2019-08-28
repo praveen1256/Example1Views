@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SignUpActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     // MVC,MVP,MVVM
 
@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity implements ILoginView, Vie
         et_username = findViewById(R.id.et_username);
         bt_login = findViewById(R.id.bt_login);
 
-        iLoginPresenter = new ImpLoginPresenter(this);
+//        iLoginPresenter = new ImpLoginPresenter(this);
 
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,28 +86,28 @@ public class SignUpActivity extends AppCompatActivity implements ILoginView, Vie
         Log.v(TAG,TAG+" : onBackPressed");
     }
 
-    @Override
-    public void successValidation() {
-        Toast.makeText(this,"V Success",Toast.LENGTH_LONG).show();
-        showToast("Validation Success");
-        iLoginPresenter.callLoginApi(et_username.getText().toString());
-    }
-
-    @Override
-    public void failValidation() {
-        showToast("Validation Failed");
-    }
-
-    @Override
-    public void loginApiSuccess() {
-        showToast("Login Success");
-        //navigate to home screen
-    }
-
-    @Override
-    public void loginApiFailed() {
-        showToast("Login Failed");
-    }
+//    @Override
+//    public void successValidation() {
+//        Toast.makeText(this,"V Success",Toast.LENGTH_LONG).show();
+//        showToast("Validation Success");
+//        iLoginPresenter.callLoginApi(et_username.getText().toString());
+//    }
+//
+//    @Override
+//    public void failValidation() {
+//        showToast("Validation Failed");
+//    }
+//
+//    @Override
+//    public void loginApiSuccess() {
+//        showToast("Login Success");
+//        //navigate to home screen
+//    }
+//
+//    @Override
+//    public void loginApiFailed() {
+//        showToast("Login Failed");
+//    }
 
     private void showToast(String message){
         Toast.makeText(this,message, Toast.LENGTH_LONG).show();
