@@ -23,15 +23,13 @@ public class FabAndSnackbarActivity extends AppCompatActivity {
         mShowSnackbarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(mCoordinatorLayout,
-                        "This is a simple Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("CLOSE", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // Custom action
+                Snackbar.make(mCoordinatorLayout, "This is a simple Snackbar", Snackbar.LENGTH_LONG).setAction("CLOSE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Custom action
 
-                            }
-                        }).show();
+                    }
+                }).show();
             }
         });
     }
