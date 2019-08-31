@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
         rv_list = findViewById(R.id.rv_list);
         spinner = findViewById(R.id.spinner);
 
-        setListView();
+//        setListView();
         setRecyclerView();
-        setSpinnerData();
+//        setSpinnerData();
         Log.v(TAG,TAG+" : onCreate");
     }
 
@@ -57,13 +57,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
 
     private void setRecyclerView() {
 
+        //HORIZONTAL,VERTICAL,GRID,Staggered
         MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(this,listData,listImages);
 
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, false);
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL, false);
 
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),3);
 //        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
 
         rv_list.setLayoutManager(mLayoutManager);
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerTouchList
 
     private void setListView() {
 //        stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,android.R.id.text1,listData);
-        stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.item_list,R.id.tv_item_lv,listData);
+//        stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.item_list,R.id.tv_item_lv,listData);
 
         // Custom Adapter
         myAdapter = new MyAdapter(this,listData,listImages);
