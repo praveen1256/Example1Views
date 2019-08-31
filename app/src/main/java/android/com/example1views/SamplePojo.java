@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class SamplePojo {
 
-    @SerializedName("name")
+    @SerializedName("firstname")
+//    @SerializedName(value="name", alternate={"firstname"})
     @Expose
     private String name;
     @SerializedName("place")

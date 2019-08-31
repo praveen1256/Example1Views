@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-//https://myproject.com/login/xxxx/1234	// Path URL
+//  https://myproject.com/login/xxxx/1234	// Path URL
 
 //        https://myproject.com/login?username='xxxx'&password='1234'	// Query URL
 //        https://myproject.com/login
@@ -38,10 +38,12 @@ import retrofit2.http.Query;
 
 public interface GetDataService {
 
-
+//    https://myproject.com/login?username='xxxx'&password='1234' //GET @Query
     @GET("login?")
     Call<SamplePojo> loginValidation1(@Query("username") String username,@Query("password") String password);
 
+
+    //  https://myproject.com/login/name	// Path URL
     @GET("login/{username}")
     Call<SamplePojo> loginValidation2(@Path("username") String username);
 
