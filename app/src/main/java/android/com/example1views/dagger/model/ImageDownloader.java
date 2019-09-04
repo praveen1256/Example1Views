@@ -10,7 +10,7 @@ public class ImageDownloader {
     private Context context;
     private static ImageDownloader imageDownloader;
 
-    private ImageDownloader(Context context) {
+    public ImageDownloader(Context context) {
         this.context = context;
     }
 
