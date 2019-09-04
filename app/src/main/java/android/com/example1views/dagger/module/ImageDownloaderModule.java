@@ -23,8 +23,9 @@ public class ImageDownloaderModule {
         return context;
     }
 
-    @Provides @Singleton
+    @Provides
     ImageDownloader provideImageDownloader(Context context){
-        return new ImageDownloader(context);
+//        return new ImageDownloader(context); // Dagger Singleton with @Singleton
+        return ImageDownloader.getImageLoader(context); // Custom Singleton
     }
 }

@@ -8,9 +8,17 @@ import com.squareup.picasso.Picasso;
 
 public class ImageDownloader {
     private Context context;
+    private static ImageDownloader imageDownloader;
 
-    public ImageDownloader(Context context) {
+    private ImageDownloader(Context context) {
         this.context = context;
+    }
+
+    public static ImageDownloader getImageLoader(Context context){
+        if(imageDownloader==null){
+            imageDownloader = new ImageDownloader(context);
+        }
+        return imageDownloader;
     }
 
     public void toImageView(ImageView imageView, String url) {
