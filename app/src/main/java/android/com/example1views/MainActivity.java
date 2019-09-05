@@ -77,4 +77,5 @@ public class MainActivity extends AppCompatActivity implements FragmentCommunica
 //        setData(msg);
         tv_text.setText(msg);
     }
+
 }
