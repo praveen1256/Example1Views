@@ -1,7 +1,9 @@
 package android.com.example1views;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,23 @@ public class OneFragment extends Fragment {
 
     public OneFragment() {
         // Required empty public constructor
+    }
+
+    FragmentComm fragmentComm;
+    RecyclerView recyclerView;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && recyclerView!=null){
+            // reload the api
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentComm = (FragmentComm)context;
     }
 
     @Override
@@ -32,11 +51,13 @@ public class OneFragment extends Fragment {
 
             }
         });
+        // api call
         return view;
     }
 
     private void showToast() {
         Toast.makeText(getActivity(),"Frag One Clicked",Toast.LENGTH_LONG).show();
+        fragmentComm.setDataFrag(2,"I'm From 1st Fragment");
     }
 
 }

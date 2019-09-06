@@ -15,29 +15,30 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentComm {
 
     String TAG = "MainActivity LifeCycle";
 
     /*
-    *   Material Design Topics
-    *
-    *   Recycler View
-    *   CardView
-    *   Drawer Layout & Navigation View
-    *   Toolbar
-    *   TabLayout and Viewpager
-    *   Coordinator Layout
-    *   Snack Bar
-    *   Collapse Toolbar
-    *   Floating Action Button
-    *
-    * */
+     *   Material Design Topics
+     *
+     *   Recycler View
+     *   CardView
+     *   Drawer Layout & Navigation View
+     *   Toolbar
+     *   TabLayout and Viewpager
+     *   Coordinator Layout
+     *   Snack Bar
+     *   Collapse Toolbar
+     *   Floating Action Button
+     *
+     * */
 
 
     private TabLayout tabLayout;
     private Toolbar toolbar;
     private ViewPager viewPager;
+    ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,26 +50,40 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.findViewById(R.id.tv_toolbar_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Toolbar Title Clicked",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Toolbar Title Clicked", Toast.LENGTH_LONG).show();
             }
         });
-        tabLayout =  findViewById(R.id.tabs);
-        viewPager =  findViewById(R.id.viewpager);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager();
 //        setSupportActionBar(toolbar);
         tabLayout.setupWithViewPager(viewPager);
     }
 
     private void setupViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");
+        adapter.addFragment(new ThreeFragment(), "Four");
+        viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void setDataFrag(int fragPosition, String message) {
+        if (adapter.getFragment(fragPosition) instanceof TwoFragment) {
+            TwoFragment twoFragment = (TwoFragment) adapter.getFragment(fragPosition);
+            if (twoFragment != null)
+                twoFragment.setData(message);
+        } else if (adapter.getFragment(fragPosition) instanceof ThreeFragment) {
+            ThreeFragment twoFragment = (ThreeFragment) adapter.getFragment(fragPosition);
+            twoFragment.setData(message);
+        }
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -92,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+        }
+
+        public Fragment getFragment(int position) {
+            return mFragmentList.get(position);
         }
 
         @Override
