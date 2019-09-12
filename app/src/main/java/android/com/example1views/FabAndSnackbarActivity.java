@@ -27,7 +27,6 @@ public class FabAndSnackbarActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // Custom action
-
                     }
                 }).show();
             }
