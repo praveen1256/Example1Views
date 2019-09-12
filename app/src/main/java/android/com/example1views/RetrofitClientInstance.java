@@ -7,7 +7,8 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
     private static RetrofitClientInstance retrofitClientInstance;
-    private static final String BASE_URL = "http://www.mocky.io/v2/";
+//    private static final String BASE_URL = "http://www.mocky.io/v2/";
+    private static final String BASE_URL = BuildConfig.API;
 
     private RetrofitClientInstance() {
 
