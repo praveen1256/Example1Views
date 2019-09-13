@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 //        service = new Intent(this,MyService.class);
         service = new Intent(this,IntentServiceExample.class);
         startService(service);
+        getResources().getString(R.string.app_name);
 
         tv_view.setOnClickListener(new View.OnClickListener() {
             @Override

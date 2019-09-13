@@ -4,13 +4,13 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-public class IntentServiceExample extends IntentService {
+public class IntentServiceExample2 extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public IntentServiceExample() {
+    public IntentServiceExample2(String name) {
         super("MyIntentService");
     }
 
@@ -20,6 +20,5 @@ public class IntentServiceExample extends IntentService {
         // It will stop once the work is done
         // Play Song
         Log.e("IntentServiceExample","IntentServiceExample onStart : "+Thread.currentThread().getName());
-
     }
 }

@@ -30,6 +30,7 @@ public class BoundService2 extends Service {
 
     private IBinder mBinder = new BoundService2.MyBinder();
     int value = 0;
+    int percent;
     boolean onBind = true;
     @Override
     public void onCreate() {
@@ -47,6 +48,7 @@ public class BoundService2 extends Service {
                     value++;
                     try {
                         Thread.sleep(1000);//1 Sec
+                        // percent =10;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -71,6 +73,10 @@ public class BoundService2 extends Service {
 
     public String getData(){
         return "I'm From Service "+value;
+    }
+
+    public int getPercent(){
+        return percent;
     }
 
     public class MyBinder extends Binder {

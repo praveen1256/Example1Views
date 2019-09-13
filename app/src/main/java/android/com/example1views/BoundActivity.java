@@ -42,8 +42,10 @@ public class BoundActivity extends AppCompatActivity {
         bt_getvalue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mBoundService != null)
+                if (mBoundService != null) {
                     Toast.makeText(BoundActivity.this, mBoundService.getData(), Toast.LENGTH_LONG).show();
+                    bt_getvalue.setText(""+mBoundService.getData());
+                }
             }
         });
 
@@ -64,10 +66,26 @@ public class BoundActivity extends AppCompatActivity {
         }
     };
 
+ private ServiceConnection mServiceConnection2 = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mServiceBound = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BoundService2.MyBinder myBinder = (BoundService2.MyBinder) service;
+            mBoundService = myBinder.getService();
+            mServiceBound = true;
+        }
+    };
+
 
     private void stopService() {
         if (mServiceBound) {
             unbindService(mServiceConnection);
+//            unbindService(mServiceConnection2);
             mServiceBound = false;
         }
 //        Intent intent = new Intent(this,
@@ -79,6 +97,7 @@ public class BoundActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BoundService2.class);
 //        startService(intent);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+//        bindService(intent, mServiceConnection2, Context.BIND_AUTO_CREATE);
     }
 
 
