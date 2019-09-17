@@ -18,7 +18,10 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng hyd = new LatLng(17.3850, 78.4867);
         CircleOptions circleOptions = new CircleOptions();
         circleOptions.center(hyd);
-        circleOptions.radius(10);
+        circleOptions.radius(10);// In meters
         map.addCircle(circleOptions);
     }
 
@@ -190,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng hyd = new LatLng(17.3850, 78.4867);
         map.addMarker(new
                 MarkerOptions().position(hyd).title("Hyderabad"));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(hyd, 15));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(hyd, 25));
     }
 
     private void addPolyLines() {
@@ -204,10 +207,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // move camera to zoom on map
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(sec,
                 13));
-
+        getDirectionsUrl(hyd,hitech_city);
     }
 
     private String getDirectionsUrl(LatLng origin,LatLng dest){
+
+
 
         // Origin of route
         String str_origin = "origin="+origin.latitude+","+origin.longitude;
@@ -226,6 +231,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+
+        // api call with retrofit
+        Log.v("API","API "+url);
+
+        // https://maps.googleapis.com/maps/api/directions/json?origin=17.385,78.4867&destination=17.4435,78.3772&sensor=false&key=AIzaSyCr7qw_G-qOluNjBHTW7zTdgkoKp_gxMn8
 
         return url;
     }
