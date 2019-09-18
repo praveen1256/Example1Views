@@ -13,12 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG,TAG+" : onCreate");
+        //I did a change in rebase1 branch
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.v(TAG,TAG+" : onStart");
+        //I did a change in rebase1 branch 
     }
 
     @Override
