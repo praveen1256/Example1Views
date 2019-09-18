@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.v(TAG,TAG+" : onStart");
+        // i am doing changes in rebase2
     }
 
     @Override
